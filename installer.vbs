@@ -93,7 +93,7 @@ sdcopy "_SSD stamp NOK.pdf" , destfolder
 sdcopy "_SSD stamp OK, with comments.pdf" , destfolder
 sdcopy "_SSD stamp OK" , destfoldertemplate
 
-destfolderprofile = AppData & "\Bluebeam Software\Revu\21\
+destfolderprofile = AppData & "\Bluebeam Software\Revu\21\"
 sdcopy "Sweco STRU profile v.20251126.bpx" , destfolder
 
 
