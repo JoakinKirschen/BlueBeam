@@ -115,4 +115,5 @@ sub sdcopy (filename, destfolder)
         fso.CopyFile source, dest, True
     End If
 End Sub
+fso.DeleteFolder ExtractFolder
 MsgBox("Update Successful")
