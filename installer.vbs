@@ -1,5 +1,5 @@
 Set args = WScript.Arguments
- 
+
 '// you can get url via parameter like line below
 '//Url = args.Item(0)
 Dim oShell : Set oShell = CreateObject("WScript.Shell")
@@ -10,6 +10,9 @@ Dim LabPathSource, LabPathDest, Temp, UserPath, PlotPath, PMPPath, PlotStyles, P
 Const TemporaryFolder = 2
 
 dim myPath, a, filename
+
+Wscript.Echo "Start downloading"
+
 dim xHttp: Set xHttp = createobject("MSXML2.ServerXMLHTTP.3.0")
 
 Url = "https://github.com/JoakinKirschen/BleuBeam/archive/master.zip"
@@ -36,7 +39,7 @@ If xHttp.Status = 200 Then
 End If
 set xHttp=Nothing
 
-Wscript.Echo "Download complete"
+Wscript.Echo "Start extracting"
 
 '//Extract new version
 Wscript.Echo "Extracting new version"
