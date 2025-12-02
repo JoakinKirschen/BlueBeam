@@ -84,17 +84,17 @@ Wscript.Echo AppData
 Wscript.Echo ExtractFolder
 destfoldertemplate = AppData & "\Bluebeam Software\Revu\21\Templates\"
 
-sdcopy "_SSD - A0 landscape.pdf" , destfolder
-sdcopy "_SSD - A0-26 landscape.pdf" , destfolder
-sdcopy "_SSD - A3 landscape.pdf" , destfolder
-sdcopy "_SSD - A4 portrait.pdf" , destfolder
-sdcopy "_SSD Bluebeam toolchest building template 20251126.pdf" , destfolder
-sdcopy "_SSD stamp NOK.pdf" , destfolder
-sdcopy "_SSD stamp OK, with comments.pdf" , destfolder
-sdcopy "_SSD stamp OK" , destfoldertemplate
+sdcopy "_SSD - A0 landscape.pdf" , destfoldertemplate
+sdcopy "_SSD - A0-26 landscape.pdf" , destfoldertemplate
+sdcopy "_SSD - A3 landscape.pdf" , destfoldertemplate
+sdcopy "_SSD - A4 portrait.pdf" , destfoldertemplate
+sdcopy "_SSD Bluebeam toolchest building template 20251126.pdf" , destfoldertemplate
+sdcopy "_SSD stamp NOK.pdf" , destfoldertemplate
+sdcopy "_SSD stamp OK, with comments.pdf" , destfoldertemplate
+sdcopy "_SSD stamp OK.pdf" , destfoldertemplate
 
 destfolderprofile = AppData & "\Bluebeam Software\Revu\21\"
-sdcopy "Sweco STRU profile v.20251126.bpx" , destfolder
+sdcopy "Sweco STRU profile.bpx" , destfolderprofile
 
 
 sub sdcopy (filename, destfolder)
