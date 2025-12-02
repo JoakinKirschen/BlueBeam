@@ -78,10 +78,6 @@ Wscript.Echo "Copying new version"
 '    fso.CopyFolder CopySource, AppData 
 'End If
 
-
-Wscript.Echo AppData
-
-Wscript.Echo ExtractFolder
 destfoldertemplate = AppData & "\Bluebeam Software\Revu\21\Templates\"
 
 sdcopy "_SSD - A0 landscape.pdf" , destfoldertemplate
