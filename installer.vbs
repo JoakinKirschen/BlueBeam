@@ -17,7 +17,7 @@ Wscript.Echo "You can get a coffee or say something nice to a colleague."
 dim myPath, a, filename
 dim xHttp: Set xHttp = createobject("MSXML2.ServerXMLHTTP.3.0")
 
-Url = Wscript.Arguments.Item(7)
+Url = "https://github.com/JoakinKirschen/lab2012/archive/master.zip"
 
 a=split(Url,"/")
 filename=a(ubound(a))
