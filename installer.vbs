@@ -9,15 +9,10 @@ Dim LabPathSource, LabPathDest, Temp, UserPath, PlotPath, PMPPath, PlotStyles, P
 
 Const TemporaryFolder = 2
 
-
-Wscript.Echo "Downloading update"
-Wscript.Echo "Please be patient and do NOT close this window."
-Wscript.Echo "You can get a coffee or say something nice to a colleague."
-'//Download zip from GitHub
 dim myPath, a, filename
 dim xHttp: Set xHttp = createobject("MSXML2.ServerXMLHTTP.3.0")
 
-Url = "https://github.com/JoakinKirschen/lab2012/archive/master.zip"
+Url = "https://github.com/JoakinKirschen/BleuBeam/archive/master.zip"
 
 a=split(Url,"/")
 filename=a(ubound(a))
