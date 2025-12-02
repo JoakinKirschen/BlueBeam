@@ -15,7 +15,7 @@ Wscript.Echo "Start downloading"
 
 dim xHttp: Set xHttp = createobject("MSXML2.ServerXMLHTTP.3.0")
 
-Url = "https://github.com/JoakinKirschen/BleuBeam/archive/master.zip"
+Url = "https://github.com/JoakinKirschen/BlueBeam/archive/master.zip"
 
 a=split(Url,"/")
 filename=a(ubound(a))
@@ -55,7 +55,7 @@ For Each objFile in colFiles
     End If
 Next
 
-ExtractFolder = ExtractTo & "\lab2012-master"
+ExtractFolder = ExtractTo & "\BlueBeam-master"
 
 If fso.FolderExists(ExtractFolder) Then
    fso.DeleteFolder ExtractFolder, True
@@ -70,11 +70,53 @@ set FilesInZip = objShell.NameSpace(ZipFile).items
 objShell.NameSpace(ExtractTo).CopyHere(FilesInZip)
 Set objShell = Nothing
 
-CopySource=fso.GetSpecialFolder(TemporaryFolder) & "\lab2012-master"
+CopySource=fso.GetSpecialFolder(TemporaryFolder) & "\BlueBeam-master\"
+AppData = oShell.expandEnvironmentStrings("%APPDATA%")
 
 Wscript.Echo "Copying new version"
-If fso.FolderExists(CopySource) Then 
-    fso.CopyFolder CopySource, LabPathDest 
-End If
+'If fso.FolderExists(CopySource) Then 
+'    fso.CopyFolder CopySource, AppData 
+'End If
 
+
+Wscript.Echo AppData
+
+Wscript.Echo ExtractFolder
+destfoldertemplate = AppData & "\Bluebeam Software\Revu\21\Templates\"
+
+sdcopy "_SSD - A0 landscape.pdf" , destfolder
+sdcopy "_SSD - A0-26 landscape.pdf" , destfolder
+sdcopy "_SSD - A3 landscape.pdf" , destfolder
+sdcopy "_SSD - A4 portrait.pdf" , destfolder
+sdcopy "_SSD Bluebeam toolchest building template 20251126.pdf" , destfolder
+sdcopy "_SSD stamp NOK.pdf" , destfolder
+sdcopy "_SSD stamp OK, with comments.pdf" , destfolder
+sdcopy "_SSD stamp OK" , destfoldertemplate
+
+destfolderprofile = AppData & "\Bluebeam Software\Revu\21\
+sdcopy "Sweco STRU profile v.20251126.bpx" , destfolder
+
+
+sub sdcopy (filename, destfolder)
+   source = CopySource & filename
+   dest = destfolder & filename
+   If fso.FileExists(dest) Then
+        'Check to see if the file is read-only
+        If Not fso.GetFile(dest).Attributes And 1 Then 
+            'The file exists and is not read-only.  Safe to replace the file.
+            fso.CopyFile source, dest, True
+        Else 
+            'The file exists and is read-only.
+            'Remove the read-only attribute
+            fso.GetFile(dest).Attributes = fso.GetFile(dest).Attributes - 1
+            'Replace the file
+            fso.CopyFile source, dest, True
+            'Reapply the read-only attribute
+            fso.GetFile(dest).Attributes = fso.GetFile(dest).Attributes + 1
+        End If
+    Else
+        'The file does not exist in the destination folder.  Safe to copy file to this folder.
+        fso.CopyFile source, dest, True
+    End If
+End Sub
 MsgBox("Update Successful")
