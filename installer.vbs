@@ -38,4 +38,40 @@ set xHttp=Nothing
 
 Wscript.Echo "Download complete"
 
+'//Extract new version
+Wscript.Echo "Extracting new version"
+'The location of the zip file.
+ExtractTo=fso.GetSpecialFolder(TemporaryFolder) '"C:\Test\"
+ZipFile=ExtractTo & "\" & filename '"C:\Test.Zip"
+
+Set objFolder = fso.GetFolder(ExtractTo)
+Set colFiles = objFolder.Files
+For Each objFile in colFiles
+    If objFile.Attributes AND ReadOnly Then
+        objFile.Attributes = objFile.Attributes XOR ReadOnly
+    End If
+Next
+
+ExtractFolder = ExtractTo & "\lab2012-master"
+
+If fso.FolderExists(ExtractFolder) Then
+   fso.DeleteFolder ExtractFolder, True
+End If
+'If NOT fso.FolderExists(ExtractTo) Then
+'   fso.CreateFolder(ExtractTo)
+'End If
+
+'Extract the contants of the zip file.
+set objShell = CreateObject("Shell.Application")
+set FilesInZip = objShell.NameSpace(ZipFile).items
+objShell.NameSpace(ExtractTo).CopyHere(FilesInZip)
+Set objShell = Nothing
+
+CopySource=fso.GetSpecialFolder(TemporaryFolder) & "\lab2012-master"
+
+Wscript.Echo "Copying new version"
+If fso.FolderExists(CopySource) Then 
+    fso.CopyFolder CopySource, LabPathDest 
+End If
+
 MsgBox("Update Successful")
