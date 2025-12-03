@@ -24,8 +24,6 @@ myPath = fso.GetSpecialFolder(TemporaryFolder) & "/" & filename
 
 xHttp.Open "GET", Url, False
 xHttp.Send
-
-'Wscript.Echo "Download-Status: " ^& xHttp.Status ^& " " ^& xHttp.statusText
  
 If xHttp.Status = 200 Then
     Dim objStream
@@ -39,13 +37,9 @@ If xHttp.Status = 200 Then
 End If
 set xHttp=Nothing
 
-Wscript.Echo "Start extracting"
-
 '//Extract new version
-Wscript.Echo "Extracting new version"
-'The location of the zip file.
-ExtractTo=fso.GetSpecialFolder(TemporaryFolder) '"C:\Test\"
-ZipFile=ExtractTo & "\" & filename '"C:\Test.Zip"
+ExtractTo=fso.GetSpecialFolder(TemporaryFolder)
+ZipFile=ExtractTo & "\" & filename
 
 Set objFolder = fso.GetFolder(ExtractTo)
 Set colFiles = objFolder.Files
