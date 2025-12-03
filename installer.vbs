@@ -110,4 +110,4 @@ sub sdcopy (filename, destfolder)
     End If
 End Sub
 fso.DeleteFolder ExtractFolder
-MsgBox("Update Successful")
+MsgBox("Update Successful & Thx Joakin")
